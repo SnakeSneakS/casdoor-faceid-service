@@ -1,0 +1,47 @@
+services:
+  faceid-cpu:
+    build:
+      context: .
+      args:
+        UNIFACE_EXTRA: cpu
+        APT_MIRROR: http://mirrors.aliyun.com/debian
+        APT_SECURITY_MIRROR: http://mirrors.aliyun.com/debian-security
+        PIP_INDEX_URL: https://mirrors.aliyun.com/pypi/simple/
+        PIP_TRUSTED_HOST: mirrors.aliyun.com
+        FACEID_PRELOAD_MODE: all
+        UNIFACE_MODEL_URL_REWRITE: ""
+    image: casdoor-faceid-service:cpu
+    ports:
+      - "8100:8100"
+    environment:
+      FACEID_DEVICE: cpu
+      FACEID_ENABLE_LIVENESS: "false"
+      FACEID_SIMILARITY_THRESHOLD: "0.6"
+      FACEID_LIVENESS_THRESHOLD: "0.7"
+      UNIFACE_CACHE_DIR: /opt/uniface/models
+      UNIFACE_MODEL_URL_REWRITE: ""
+
+  faceid-gpu:
+    profiles:
+      - gpu
+    build:
+      context: .
+      args:
+        UNIFACE_EXTRA: gpu
+        APT_MIRROR: http://mirrors.aliyun.com/debian
+        APT_SECURITY_MIRROR: http://mirrors.aliyun.com/debian-security
+        PIP_INDEX_URL: https://mirrors.aliyun.com/pypi/simple/
+        PIP_TRUSTED_HOST: mirrors.aliyun.com
+        FACEID_PRELOAD_MODE: all
+        UNIFACE_MODEL_URL_REWRITE: ""
+    image: casdoor-faceid-service:gpu
+    ports:
+      - "8100:8100"
+    environment:
+      FACEID_DEVICE: gpu
+      FACEID_ENABLE_LIVENESS: "false"
+      FACEID_SIMILARITY_THRESHOLD: "0.6"
+      FACEID_LIVENESS_THRESHOLD: "0.7"
+      UNIFACE_CACHE_DIR: /opt/uniface/models
+      UNIFACE_MODEL_URL_REWRITE: ""
+    gpus: all
