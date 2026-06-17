@@ -9,7 +9,7 @@ The service does not store user data, images, embeddings, or management records.
 CPU:
 
 ```bash
-docker compose up faceid-cpu
+docker compose --profile cpu up faceid-cpu
 ```
 
 GPU:

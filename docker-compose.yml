@@ -1,5 +1,7 @@
 services:
   faceid-cpu:
+    profiles:
+      - cpu
     build:
       context: .
       args:
