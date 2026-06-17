@@ -8,8 +8,7 @@ services:
         UNIFACE_EXTRA: cpu
         APT_MIRROR: http://mirrors.aliyun.com/debian
         APT_SECURITY_MIRROR: http://mirrors.aliyun.com/debian-security
-        PIP_INDEX_URL: https://mirrors.aliyun.com/pypi/simple/
-        PIP_TRUSTED_HOST: mirrors.aliyun.com
+        UV_DEFAULT_INDEX: https://mirrors.aliyun.com/pypi/simple/
         FACEID_PRELOAD_MODE: all
         UNIFACE_MODEL_URL_REWRITE: ""
     image: casdoor-faceid-service:cpu
@@ -32,8 +31,7 @@ services:
         UNIFACE_EXTRA: gpu
         APT_MIRROR: http://mirrors.aliyun.com/debian
         APT_SECURITY_MIRROR: http://mirrors.aliyun.com/debian-security
-        PIP_INDEX_URL: https://mirrors.aliyun.com/pypi/simple/
-        PIP_TRUSTED_HOST: mirrors.aliyun.com
+        UV_DEFAULT_INDEX: https://mirrors.aliyun.com/pypi/simple/
         FACEID_PRELOAD_MODE: all
         UNIFACE_MODEL_URL_REWRITE: ""
     image: casdoor-faceid-service:gpu

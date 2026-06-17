@@ -2,7 +2,7 @@
 name = "casdoor-faceid-service"
 version = "0.1.0"
 description = "Stateless UniFace-backed Face ID service for Casdoor"
-requires-python = ">=3.10"
+requires-python = ">=3.10,<3.13"
 dependencies = [
   "fastapi>=0.110",
   "uvicorn[standard]>=0.27",
@@ -14,11 +14,16 @@ cpu = [
   "uniface[cpu]",
 ]
 gpu = [
+  "onnxruntime-gpu<1.27",
   "uniface[gpu]",
 ]
 
 [project.scripts]
 casdoor-faceid-service = "casdoor_faceid_service.main:main"
+
+[[tool.uv.index]]
+url = "https://mirrors.aliyun.com/pypi/simple/"
+default = true
 
 [build-system]
 requires = ["setuptools>=68"]

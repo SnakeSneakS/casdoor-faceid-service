@@ -30,6 +30,8 @@ The service listens on `http://127.0.0.1:8100`.
 
 The Docker image preloads the default UniFace models during build. This makes download failures fail the build instead of appearing on the first login request.
 
+Dependencies are managed with uv. Use `uv add` to change dependencies, and keep `uv.lock` committed so Docker builds install the same resolved packages with `uv sync --locked`.
+
 ## Configuration
 
 Environment variables:
@@ -50,6 +52,8 @@ FACEID_GPU_DEVICES=all
 ```
 
 `FACEID_DEVICE=gpu` selects `CUDAExecutionProvider` with CPU fallback. `FACEID_DEVICE=cpu` forces `CPUExecutionProvider`.
+
+The GPU extra pins `onnxruntime-gpu<1.27` because newer releases can resolve to packages without Linux wheels on the current Docker target.
 
 `FACEID_PRELOAD_MODE=all` downloads the default detector, recognizer, anti-spoofing, and parsing models at image build time. Set it to `core` to preload only the login compare models, or `none` to disable build-time model download.
 
