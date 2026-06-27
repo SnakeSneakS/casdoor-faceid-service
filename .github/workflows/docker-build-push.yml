@@ -26,6 +26,9 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Set lowercase container owner
+        run: echo "GHCR_OWNER=$(echo \"$GITHUB_REPOSITORY\" | cut -d/ -f1 | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
+
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
@@ -33,5 +36,5 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: |
-            ghcr.io/${{ github.repository_owner.toLower() }}/casdoor-faceid-service:latest
-            ghcr.io/${{ github.repository_owner.toLower() }}/casdoor-faceid-service:${{ github.sha }}
+            ghcr.io/${{ env.GHCR_OWNER }}/casdoor-faceid-service:latest
+            ghcr.io/${{ env.GHCR_OWNER }}/casdoor-faceid-service:${{ github.sha }}
